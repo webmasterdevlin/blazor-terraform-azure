@@ -2,7 +2,6 @@
 # DEPLOY AN APP SERVICE PLAN W/ APP SERVICE IN AZURE
 # This is demo of Automating your infrastructure deployments in the Cloud with Terraform and Azure Pipelines
 # ---------------------------------------------------------------------------------------------------------------------
-
 terraform {
   required_version = ">= 0.12"
 
@@ -14,11 +13,17 @@ terraform {
   }
 }
 
+# ---------------------------------------------------------------------------------------------------------------------
+# 
+# ---------------------------------------------------------------------------------------------------------------------
 resource "azurerm_resource_group" "dev" {
   name     = "BlazorTerraformResourceGroup"
   location = "Norway East"
 }
 
+# ---------------------------------------------------------------------------------------------------------------------
+# 
+# ---------------------------------------------------------------------------------------------------------------------
 resource "azurerm_app_service_plan" "dev" {
   name                = "__appserviceplan__"
   location            = azurerm_resource_group.dev.location
@@ -30,6 +35,9 @@ resource "azurerm_app_service_plan" "dev" {
   }
 }
 
+# ---------------------------------------------------------------------------------------------------------------------
+# 
+# ---------------------------------------------------------------------------------------------------------------------
 resource "azurerm_app_service" "dev" {
   name                = "__appservicename__"
   location            = azurerm_resource_group.dev.location
