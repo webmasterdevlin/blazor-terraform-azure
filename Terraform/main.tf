@@ -16,7 +16,7 @@ terraform {
 
 resource "azurerm_resource_group" "dev" {
   name     = "BlazorTerraformResourceGroup"
-  location = "West Europe"
+  location = "Norway East"
 }
 
 resource "azurerm_app_service_plan" "dev" {
