@@ -3,7 +3,6 @@
 # This is demo of Automating your infrastructure deployments in the Cloud with Terraform and Azure Pipelines
 # ---------------------------------------------------------------------------------------------------------------------
 
-
 terraform {
   required_version = ">= 0.12"
 
