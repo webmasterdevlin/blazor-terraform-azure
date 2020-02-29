@@ -6,11 +6,12 @@ terraform {
   required_version = ">= 0.12"
 
   backend "azurerm" {
-   storage_account_name   = "__terraformstorageaccount__"
-   container_name         = "terraformcontainer"
-   key                    = "terraform.tfstate"
-	 access_key             = "__storagekey__"
+    # Configured in release pipeline > Terraform init
   }
+}
+
+provider "azurerm" {
+  version = "1.44.0"
 }
 
 # ---------------------------------------------------------------------------------------------------------------------
