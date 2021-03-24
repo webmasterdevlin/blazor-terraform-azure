@@ -1,0 +1,174 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "sites_blazorterraform_name": {
+            "defaultValue": "blazorterraform",
+            "type": "String"
+        },
+        "serverfarms_blazorterraformplan_externalid": {
+            "defaultValue": "/subscriptions/295e95d5-c35c-47ed-b4ff-8a83a78d1bd0/resourceGroups/BlazorTerraformResourceGroup/providers/Microsoft.Web/serverfarms/blazorterraformplan",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Web/sites",
+            "apiVersion": "2018-11-01",
+            "name": "[parameters('sites_blazorterraform_name')]",
+            "location": "Norway East",
+            "kind": "app",
+            "properties": {
+                "enabled": true,
+                "hostNameSslStates": [
+                    {
+                        "name": "[concat(parameters('sites_blazorterraform_name'), '.azurewebsites.net')]",
+                        "sslState": "Disabled",
+                        "hostType": "Standard"
+                    },
+                    {
+                        "name": "[concat(parameters('sites_blazorterraform_name'), '.scm.azurewebsites.net')]",
+                        "sslState": "Disabled",
+                        "hostType": "Repository"
+                    }
+                ],
+                "serverFarmId": "[parameters('serverfarms_blazorterraformplan_externalid')]",
+                "reserved": false,
+                "isXenon": false,
+                "hyperV": false,
+                "siteConfig": {},
+                "scmSiteAlsoStopped": false,
+                "clientAffinityEnabled": true,
+                "clientCertEnabled": false,
+                "hostNamesDisabled": false,
+                "containerSize": 0,
+                "dailyMemoryTimeQuota": 0,
+                "httpsOnly": false,
+                "redundancyMode": "None"
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/config",
+            "apiVersion": "2018-11-01",
+            "name": "[concat(parameters('sites_blazorterraform_name'), '/web')]",
+            "location": "Norway East",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_blazorterraform_name'))]"
+            ],
+            "properties": {
+                "numberOfWorkers": 1,
+                "defaultDocuments": [
+                    "Default.htm",
+                    "Default.html",
+                    "Default.asp",
+                    "index.htm",
+                    "index.html",
+                    "iisstart.htm",
+                    "default.aspx",
+                    "index.php",
+                    "hostingstart.html"
+                ],
+                "netFrameworkVersion": "v4.0",
+                "phpVersion": "5.6",
+                "requestTracingEnabled": false,
+                "remoteDebuggingEnabled": false,
+                "httpLoggingEnabled": false,
+                "logsDirectorySizeLimit": 35,
+                "detailedErrorLoggingEnabled": false,
+                "publishingUsername": "$blazorterraform",
+                "azureStorageAccounts": {},
+                "scmType": "VSTSRM",
+                "use32BitWorkerProcess": true,
+                "webSocketsEnabled": false,
+                "alwaysOn": false,
+                "managedPipelineMode": "Integrated",
+                "virtualApplications": [
+                    {
+                        "virtualPath": "/",
+                        "physicalPath": "site\\wwwroot",
+                        "preloadEnabled": false
+                    }
+                ],
+                "loadBalancing": "LeastRequests",
+                "experiments": {
+                    "rampUpRules": []
+                },
+                "autoHealEnabled": false,
+                "localMySqlEnabled": false,
+                "ipSecurityRestrictions": [
+                    {
+                        "ipAddress": "Any",
+                        "action": "Allow",
+                        "priority": 1,
+                        "name": "Allow all",
+                        "description": "Allow all access"
+                    }
+                ],
+                "scmIpSecurityRestrictions": [
+                    {
+                        "ipAddress": "Any",
+                        "action": "Allow",
+                        "priority": 1,
+                        "name": "Allow all",
+                        "description": "Allow all access"
+                    }
+                ],
+                "scmIpSecurityRestrictionsUseMain": false,
+                "http20Enabled": false,
+                "minTlsVersion": "1.2",
+                "ftpsState": "AllAllowed",
+                "reservedInstanceCount": 0
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/deployments",
+            "apiVersion": "2018-11-01",
+            "name": "[concat(parameters('sites_blazorterraform_name'), '/11582287316037')]",
+            "location": "Norway East",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_blazorterraform_name'))]"
+            ],
+            "properties": {
+                "status": 4,
+                "author": "Devlin Duldulao",
+                "deployer": "VSTS",
+                "message": "{\"type\":\"Deployment\",\"commitId\":\"2f2341a8b0ad31755cae92d7b8da01afc1807daa\",\"buildId\":\"42\",\"releaseId\":\"1\",\"buildNumber\":\"20200221.1\",\"releaseName\":\"Release-1\",\"repoProvider\":\"GitHub\",\"repoName\":\"webmasterdevlin/blazor-terraform-azure\",\"collectionUrl\":\"https://dev.azure.com/devlinduldulao0138/\",\"teamProject\":\"42e89786-0cc1-4a49-9156-13965916a601\",\"slotName\":\"production\"}",
+                "start_time": "2020-02-21T12:15:23.3149699Z",
+                "end_time": "2020-02-21T12:15:23.3149699Z",
+                "active": false
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/deployments",
+            "apiVersion": "2018-11-01",
+            "name": "[concat(parameters('sites_blazorterraform_name'), '/21583001277093')]",
+            "location": "Norway East",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_blazorterraform_name'))]"
+            ],
+            "properties": {
+                "status": 4,
+                "author": "GitHub",
+                "deployer": "VSTS",
+                "message": "{\"type\":\"Deployment\",\"commitId\":\"4a1ec72ee4f705766679726f3e8d041a0fbe9d7c\",\"buildId\":\"79\",\"releaseId\":\"2\",\"buildNumber\":\"20200229.1\",\"releaseName\":\"Release-2\",\"repoProvider\":\"GitHub\",\"repoName\":\"webmasterdevlin/blazor-terraform-azure\",\"collectionUrl\":\"https://dev.azure.com/devlinduldulao0138/\",\"teamProject\":\"42e89786-0cc1-4a49-9156-13965916a601\",\"slotName\":\"production\"}",
+                "start_time": "2020-02-29T18:34:38.6247722Z",
+                "end_time": "2020-02-29T18:34:38.6247722Z",
+                "active": true
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/hostNameBindings",
+            "apiVersion": "2018-11-01",
+            "name": "[concat(parameters('sites_blazorterraform_name'), '/', parameters('sites_blazorterraform_name'), '.azurewebsites.net')]",
+            "location": "Norway East",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_blazorterraform_name'))]"
+            ],
+            "properties": {
+                "siteName": "blazorterraform",
+                "hostNameType": "Verified"
+            }
+        }
+    ]
+}
